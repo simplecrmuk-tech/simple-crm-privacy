@@ -1,6 +1,6 @@
 # Privacy Policy – Simple CRM Mail Merge for Gmail
 
-**Last updated:** 20 September 2026
+**Last updated:** 20 January 2026
 
 **Simple CRM Mail Merge for Gmail** (“the extension”) is a Gmail-native CRM tool designed to help users manage contacts, track opportunities, and run mail merge campaigns using Google Sheets and Gmail drafts.
 
