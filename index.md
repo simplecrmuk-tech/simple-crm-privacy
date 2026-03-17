@@ -1,71 +1,147 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Privacy Policy - Simple CRM Mail Merge</title>
-    <style>
-        body { font-family: -apple-system, Segoe UI, Helvetica, Arial, sans-serif; line-height: 1.6; color: #24292e; max-width: 850px; margin: 0 auto; padding: 40px 20px; }
-        h1 { font-size: 2em; padding-bottom: 0.3em; border-bottom: 1px solid #eaecef; }
-        h2 { font-size: 1.5em; margin-top: 24px; padding-bottom: 0.3em; border-bottom: 1px solid #eaecef; }
-        hr { height: 0.25em; padding: 0; margin: 24px 0; background-color: #e1e4e8; border: 0; }
-        code { padding: 0.2em 0.4em; margin: 0; font-size: 85%; background-color: rgba(27,31,35,0.05); border-radius: 3px; font-family: SFMono-Regular, Consolas, Liberation Mono, Menlo, monospace; }
-        .last-updated { color: #586069; }
-        a { color: #0366d6; text-decoration: none; }
-        a:hover { text-decoration: underline; }
-        .contact-section { background: #f6f8fa; border: 1px solid #d1d5da; padding: 15px; border-radius: 6px; margin-top: 30px; }
-    </style>
-</head>
-<body>
+# **Privacy Policy – Simple CRM Mail Merge for Gmail**
 
-    <h1>Privacy Policy – Simple CRM Mail Merge for Gmail</h1>
-    <p class="last-updated"><strong>Last updated:</strong> March 17, 2026</p>
+**Last updated: March 17, 2026**
 
-    <p><strong>Simple CRM Mail Merge for Gmail</strong> (“the extension”) is a Gmail-native CRM tool designed to help users manage contacts, track opportunities, and run mail merge campaigns using Google Sheets and Gmail drafts.</p>
-    <p>We take privacy seriously and collect only the minimum data required for the extension to function.</p>
+Simple CRM Mail Merge for Gmail (“the extension”) is a Gmail-native CRM tool designed to help users manage contacts, track opportunities, and run mail merge campaigns using Google Sheets and Gmail drafts.
 
-    <hr>
+We take privacy seriously and collect only the minimum data required for the extension to function.
 
-    <h2>Data We Access</h2>
+---
 
-    <h3>Google Account (OAuth)</h3>
-    <p>The extension uses Google OAuth to access the following specific data to provide its core services:</p>
-    <ul>
-        <li><strong>Google Sheets (<code>.../auth/spreadsheets</code>):</strong> Used to read and write CRM data and campaign results.</li>
-        <li><strong>Google Drive (<code>.../auth/drive.file</code>):</strong> Used strictly to create and edit spreadsheet files created by the extension. We cannot access your entire Drive.</li>
-        <li><strong>User Identity (<code>.../auth/userinfo.email</code>):</strong> Used to identify your account for subscription management.</li>
-        <li><strong>Gmail (<code>.../auth/gmail.send</code>):</strong> Used solely to execute mail merge campaigns that you manually trigger.</li>
-    </ul>
+## **1. Data We Access and Purpose**
 
-    <h3>Gmail (in-page)</h3>
-    <p>The extension runs inside Gmail to detect the currently open email thread and associate it with CRM records.</p>
-    <ul>
-        <li>The extension may read limited context such as <strong>sender email address</strong> and <strong>subject</strong> for matching.</li>
-        <li><strong>We do not transmit Gmail content to any external server.</strong></li>
-    </ul>
+### **Google Account (OAuth)**
 
-    <hr>
+The extension uses Google OAuth to access the following specific data to provide its core services:
 
-    <h2>Google API Limited Use Disclosure</h2>
-    <p>Simple CRM Mail Merge's use and transfer to any other app of information received from Google APIs will adhere to the <strong><a href="https://developers.google.com/terms/api-services-user-data-policy" target="_blank">Google API Service User Data Policy</a></strong>, including the Limited Use requirements.</p>
+- **Google Sheets (`.../auth/spreadsheets`)**  
+  Used to read and write CRM data, contact lists, and campaign results within spreadsheets you designate.
 
-    <hr>
+- **Google Drive (`.../auth/drive.file`)**  
+  Used strictly to create, edit, and save specific spreadsheet files created by the extension. We cannot access your entire Google Drive.
 
-    <h2>Data We Store</h2>
-    <p><strong>Locally (on your device):</strong> The extension stores Contacts, Opportunity records, and settings using <code>chrome.storage.local</code>. This data remains on your device. We do not operate a backend server.</p>
+- **User Identity (`.../auth/userinfo.email`)**  
+  Used to identify your account for subscription management and to personalize the CRM experience.
 
-    <hr>
+- **Gmail (`.../auth/gmail.send`)**  
+  Used solely to execute mail merge campaigns that you manually trigger. This allows the extension (via Google Apps Script) to send emails on your behalf based on your selected Gmail drafts.
 
-    <h2>Security</h2>
-    <p>The extension uses Google-approved APIs. All data transmitted to Google services is encrypted in transit using HTTPS.</p>
+---
 
-    <div class="contact-section">
-        <h2>Contact</h2>
-        <p>If you have questions about this policy, please contact:</p>
-        <p><strong>Simple CRM Mail Merge for Gmail</strong><br>
-        <strong>Email:</strong> <a href="mailto:hello@simple-crm.uk">hello@simple-crm.uk</a><br>
-        <strong>Website:</strong> <a href="https://simple-crm.uk">https://simple-crm.uk</a></p>
-    </div>
+### **Gmail (in-page)**
 
-</body>
-</html>
+The extension runs inside Gmail to detect the currently open email thread and help associate it with CRM records.
+
+The extension may read limited Gmail page context such as:
+- sender email address  
+- email subject  
+
+This is used only for CRM matching purposes.
+
+We do **not** transmit Gmail content to any external server.
+
+---
+
+## **2. Google API Limited Use Disclosure**
+
+Simple CRM Mail Merge's use and transfer to any other app of information received from Google APIs will adhere to the **Google API Services User Data Policy**, including the Limited Use requirements.
+
+We do **not**:
+- use Google user data for advertising  
+- sell or share user data  
+- use data for any purpose outside the core CRM and mail merge functionality  
+
+---
+
+## **3. Data We Store**
+
+### **Locally (on your device)**
+
+The extension stores the following data using Chrome extension local storage (`chrome.storage.local`):
+
+- Contacts  
+- Opportunity (pipeline) records  
+- Lists, stages, and settings  
+- Trial and entitlement state  
+
+This data:
+- remains on your device  
+- is never sent to external servers  
+- is only accessible by you  
+
+We do **not operate a backend server** and do not store your CRM data remotely.
+
+---
+
+## **4. Mail Merge Sending**
+
+Mail merge campaigns are created as Google Sheets documents.
+
+Sending is initiated from:
+- the extension  
+- or the Google Sheets menu  
+
+This uses a **Google Apps Script bridge** that runs under your own Google account permissions.
+
+Your email content:
+- remains private to your Google account  
+- is never accessed or stored by the developers  
+
+---
+
+## **5. Data Sharing**
+
+We do **not**:
+- sell data  
+- rent data  
+- share data with third parties  
+
+Data is only used to interact with Google services when you explicitly trigger features:
+- Google Sheets  
+- Google Drive  
+- Gmail  
+
+We do not use:
+- third-party analytics  
+- advertising trackers  
+
+---
+
+## **6. Export and Deletion**
+
+You can:
+
+- Export your CRM data at any time using built-in export features  
+- Delete your data by uninstalling the extension  
+
+Important:
+- Uninstalling removes all locally stored data  
+- Any Google Sheets created must be manually deleted from your Google Drive  
+
+---
+
+## **7. Security**
+
+The extension uses:
+- Google-approved APIs  
+- Chrome extension APIs  
+
+All communication with Google services is encrypted using **HTTPS**.
+
+---
+
+## **8. Changes to This Policy**
+
+If this privacy policy changes:
+- updates will be published here  
+- changes will take effect before any new data practices are introduced  
+
+---
+
+## **9. Contact**
+
+If you have any questions about this policy:
+
+**Simple CRM Mail Merge for Gmail**  
+📧 Email: hello@simple-crm.uk  
+🌐 Website: https://simple-crm.uk
