@@ -1,1 +1,1 @@
-# simple-crm-privacy
+# Simple CRM Privacy
