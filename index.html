@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple CRM & Mail Merge for Gmail</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.min.css">
+    <style>
+        :root { --links: #4285f4; }
+        body { max-width: 900px; margin: 0 auto; padding: 40px 20px; line-height: 1.6; }
+        header { text-align: center; margin-bottom: 60px; }
+        .logo { width: 80px; height: 80px; margin-bottom: 20px; }
+        .feature-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 40px; align-items: center; }
+        .screenshot { border-radius: 8px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); width: 100%; }
+        footer { margin-top: 80px; padding-top: 20px; border-top: 1px solid #eee; font-size: 0.9em; text-align: center; }
+        .cta-button { background: #4285f4; color: white; padding: 12px 24px; border-radius: 5px; text-decoration: none; font-weight: bold; }
+        @media (max-width: 600px) { .feature-grid { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+
+    <header>
+        <img src="assets/icon128.png" alt="Simple CRM Logo" class="logo">
+        <h1>Simple CRM & Mail Merge</h1>
+        <p>The privacy-first CRM that lives inside your Gmail. No external servers. No data tracking. Just your Google Sheets and your Inbox.</p>
+        <br>
+        <a href="#" class="cta-button">Add to Chrome — It's Free</a>
+    </header>
+
+    <section>
+        <div class="feature-grid">
+            <div>
+                <h2>Manage Contacts in Context</h2>
+                <p>Never lose track of a lead again. Simple CRM detects sender information from your active emails and lets you save them to your CRM with one click.</p>
+            </div>
+            <img src="Screenshot-Contacts.png" alt="Gmail Sidebar View" class="screenshot">
+        </div>
+
+        <div class="feature-grid">
+            <img src="Screenshot-Pipeline.png" alt="CRM Pipeline View" class="screenshot">
+            <div>
+                <h2>A Pipeline You Control</h2>
+                <p>Track your deals from "Lead" to "Won" using Google Sheets as your database. See your total pipeline value and next actions at a glance.</p>
+            </div>
+        </div>
+
+        <div class="feature-grid">
+            <div>
+                <h2>Powerful Mail Merge</h2>
+                <p>Send personalized cold outreach or follow-ups directly from your Gmail drafts. Use placeholders like <code>{{first_name}}</code> to customize every message.</p>
+            </div>
+            <img src="Screenshot-Merge.png" alt="Mail Merge Interface" class="screenshot">
+        </div>
+    </section>
+
+    <section style="text-align: center; margin-top: 80px;">
+        <h2>Privacy First by Design</h2>
+        <p>Unlike other CRMs, we don't store your data on our servers. Your contacts, deals, and emails stay within your Google Workspace. We use the <strong>"Least Privilege"</strong> security model, meaning we can't read your private inbox.</p>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Simple CRM & Mail Merge for Gmail</p>
+        <p>
+            <a href="privacy.html">Privacy Policy</a> | 
+            <a href="mailto:hello@simple-crm.uk">Support & Contact</a>
+        </p>
+    </footer>
+
+</body>
+</html>
