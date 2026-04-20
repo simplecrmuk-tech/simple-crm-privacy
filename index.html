@@ -1,70 +1,675 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simple CRM & Mail Merge for Gmail</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.min.css">
-    <style>
-        :root { --links: #4285f4; }
-        body { max-width: 900px; margin: 0 auto; padding: 40px 20px; line-height: 1.6; }
-        header { text-align: center; margin-bottom: 60px; }
-        .logo { width: 80px; height: 80px; margin-bottom: 20px; }
-        .feature-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 40px; align-items: center; }
-        .screenshot { border-radius: 8px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); width: 100%; }
-        footer { margin-top: 80px; padding-top: 20px; border-top: 1px solid #eee; font-size: 0.9em; text-align: center; }
-        .cta-button { background: #4285f4; color: white; padding: 12px 24px; border-radius: 5px; text-decoration: none; font-weight: bold; }
-        @media (max-width: 600px) { .feature-grid { grid-template-columns: 1fr; } }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Simple CRM & Mail Merge for Gmail</title>
+  <meta name="description" content="A privacy-first CRM and mail merge tool that lives inside Gmail. Track contacts, manage pipeline, and send personalised campaigns with Google Sheets." />
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" />
+  <style>
+    :root {
+      --bg: #0b1020;
+      --bg-soft: #11172b;
+      --card: #151d35;
+      --card-soft: #f7f9fc;
+      --text: #0f172a;
+      --text-light: #e8edf8;
+      --muted: #8b97b8;
+      --muted-dark: #667085;
+      --line: rgba(255,255,255,0.08);
+      --line-light: #e7ecf3;
+      --primary: #4f8cff;
+      --primary-dark: #2f6fe8;
+      --success: #1ea672;
+      --shadow: 0 18px 50px rgba(8, 15, 40, 0.16);
+      --radius: 18px;
+      --max: 1120px;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--text);
+      background: #ffffff;
+      line-height: 1.6;
+    }
+
+    a { color: inherit; }
+
+    .container {
+      width: min(var(--max), calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(12px);
+      background: rgba(11, 16, 32, 0.82);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 72px;
+      gap: 20px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 700;
+      text-decoration: none;
+      color: var(--text-light);
+    }
+
+    .brand img {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+      color: #dbe3f5;
+      font-size: 0.95rem;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: inherit;
+      opacity: 0.92;
+    }
+
+    .nav-actions {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      min-height: 46px;
+      padding: 0 18px;
+      border-radius: 12px;
+      text-decoration: none;
+      font-weight: 700;
+      transition: 0.2s ease;
+      border: 1px solid transparent;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: white;
+      box-shadow: 0 10px 24px rgba(79, 140, 255, 0.28);
+    }
+
+    .btn-primary:hover {
+      background: var(--primary-dark);
+    }
+
+    .btn-secondary {
+      background: rgba(255,255,255,0.06);
+      color: var(--text-light);
+      border-color: rgba(255,255,255,0.10);
+    }
+
+    .hero {
+      background:
+        radial-gradient(circle at top right, rgba(79, 140, 255, 0.26), transparent 30%),
+        radial-gradient(circle at top left, rgba(95, 220, 180, 0.14), transparent 28%),
+        linear-gradient(180deg, var(--bg) 0%, #121932 100%);
+      color: var(--text-light);
+      padding: 72px 0 44px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 1fr;
+      gap: 44px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.08);
+      color: #dbe3f5;
+      font-size: 0.92rem;
+      margin-bottom: 18px;
+    }
+
+    h1 {
+      margin: 0 0 18px;
+      font-size: clamp(2.2rem, 4vw, 4.3rem);
+      line-height: 1.05;
+      letter-spacing: -0.04em;
+    }
+
+    .hero p.lead {
+      margin: 0;
+      color: #c6d0e8;
+      font-size: 1.1rem;
+      max-width: 640px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 28px;
+    }
+
+    .hero-points {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px 24px;
+      margin-top: 24px;
+      padding: 0;
+      list-style: none;
+      color: #dbe3f5;
+      font-size: 0.96rem;
+    }
+
+    .hero-points li::before {
+      content: "✓";
+      color: #7ce0b2;
+      margin-right: 8px;
+      font-weight: 700;
+    }
+
+    .hero-card {
+      background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.03));
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 22px;
+      padding: 18px;
+      box-shadow: var(--shadow);
+    }
+
+    .hero-card img {
+      display: block;
+      width: 100%;
+      border-radius: 14px;
+    }
+
+    .proof-bar {
+      background: #ffffff;
+      border-bottom: 1px solid var(--line-light);
+    }
+
+    .proof-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+      padding: 22px 0;
+    }
+
+    .proof-item {
+      padding: 16px 18px;
+      border: 1px solid var(--line-light);
+      border-radius: 14px;
+      background: #fff;
+    }
+
+    .proof-item strong {
+      display: block;
+      font-size: 1.15rem;
+      margin-bottom: 4px;
+    }
+
+    .proof-item span {
+      color: var(--muted-dark);
+      font-size: 0.95rem;
+    }
+
+    .section {
+      padding: 78px 0;
+    }
+
+    .section-alt {
+      background: #f8fbff;
+    }
+
+    .section-head {
+      max-width: 760px;
+      margin-bottom: 34px;
+    }
+
+    .section-head h2 {
+      margin: 0 0 12px;
+      font-size: clamp(1.8rem, 2.5vw, 2.9rem);
+      line-height: 1.12;
+      letter-spacing: -0.03em;
+    }
+
+    .section-head p {
+      margin: 0;
+      color: var(--muted-dark);
+      font-size: 1.05rem;
+    }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 34px;
+      align-items: center;
+      margin-top: 32px;
+    }
+
+    .feature-copy h3 {
+      margin: 0 0 12px;
+      font-size: 1.55rem;
+      line-height: 1.15;
+    }
+
+    .feature-copy p {
+      margin: 0 0 18px;
+      color: var(--muted-dark);
+    }
+
+    .feature-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .feature-list li {
+      margin: 0 0 10px;
+      color: var(--text);
+    }
+
+    .feature-list li::before {
+      content: "•";
+      color: var(--primary);
+      font-weight: 900;
+      margin-right: 10px;
+    }
+
+    .shot {
+      background: #fff;
+      padding: 14px;
+      border-radius: 18px;
+      box-shadow: var(--shadow);
+      border: 1px solid var(--line-light);
+    }
+
+    .shot img {
+      display: block;
+      width: 100%;
+      border-radius: 12px;
+    }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+      margin-top: 26px;
+    }
+
+    .step {
+      background: #fff;
+      border: 1px solid var(--line-light);
+      border-radius: 16px;
+      padding: 22px;
+    }
+
+    .step-number {
+      width: 34px;
+      height: 34px;
+      border-radius: 999px;
+      background: #eef4ff;
+      color: var(--primary-dark);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      margin-bottom: 14px;
+    }
+
+    .step h3 {
+      margin: 0 0 8px;
+      font-size: 1.08rem;
+    }
+
+    .step p {
+      margin: 0;
+      color: var(--muted-dark);
+      font-size: 0.96rem;
+    }
+
+    .privacy-box {
+      background: linear-gradient(180deg, #0f172a, #131d35);
+      color: var(--text-light);
+      border-radius: 22px;
+      padding: 34px;
+      box-shadow: var(--shadow);
+    }
+
+    .privacy-box p {
+      color: #c6d0e8;
+      margin-bottom: 0;
+    }
+
+    .cta-panel {
+      background: linear-gradient(180deg, #f5f8ff, #eef4ff);
+      border: 1px solid #dfe9ff;
+      border-radius: 22px;
+      padding: 34px;
+      text-align: center;
+    }
+
+    .cta-panel h2 {
+      margin: 0 0 10px;
+      font-size: clamp(1.8rem, 2.2vw, 2.6rem);
+      line-height: 1.1;
+    }
+
+    .cta-panel p {
+      margin: 0 auto 20px;
+      max-width: 680px;
+      color: var(--muted-dark);
+    }
+
+    .cta-row {
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    footer {
+      padding: 36px 0 50px;
+      border-top: 1px solid var(--line-light);
+      background: #fff;
+    }
+
+    .footer-grid {
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      align-items: center;
+      flex-wrap: wrap;
+      color: var(--muted-dark);
+      font-size: 0.95rem;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    code {
+      background: #eef4ff;
+      padding: 2px 6px;
+      border-radius: 8px;
+      font-size: 0.95em;
+    }
+
+    @media (max-width: 960px) {
+      .hero-grid,
+      .feature-grid,
+      .proof-grid,
+      .steps {
+        grid-template-columns: 1fr;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .hero {
+        padding-top: 54px;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .nav {
+        min-height: 64px;
+      }
+
+      .nav-actions {
+        width: 100%;
+        justify-content: stretch;
+      }
+
+      .nav-actions .btn {
+        flex: 1;
+      }
+
+      .section {
+        padding: 62px 0;
+      }
+    }
+  </style>
 </head>
 <body>
 
-    <header>
-        <img src="assets/icon128.png" alt="Simple CRM Logo" class="logo">
-        <h1>Simple CRM & Mail Merge</h1>
-        <p>The privacy-first CRM that lives inside your Gmail. No external servers. No data tracking. Just your Google Sheets and your Inbox.</p>
-        <br>
-        <a href="#" class="cta-button">Add to Chrome — It's Free</a>
-    </header>
+  <header class="site-header">
+    <div class="container nav">
+      <a href="#" class="brand">
+        <img src="assets/icon128.png" alt="Simple CRM logo">
+        <span>Simple CRM</span>
+      </a>
 
-    <section>
-        <div class="feature-grid">
-            <div>
-                <h2>Manage Contacts in Context</h2>
-                <p>Never lose track of a lead again. Simple CRM detects sender information from your active emails and lets you save them to your CRM with one click.</p>
-            </div>
-            <img src="Screenshot-Contacts.png" alt="Gmail Sidebar View" class="screenshot">
-        </div>
+      <nav class="nav-links" aria-label="Primary">
+        <a href="#features">Features</a>
+        <a href="#workflow">How it works</a>
+        <a href="#privacy">Privacy</a>
+      </nav>
 
-        <div class="feature-grid">
-            <img src="Screenshot-Pipeline.png" alt="CRM Pipeline View" class="screenshot">
-            <div>
-                <h2>A Pipeline You Control</h2>
-                <p>Track your deals from "Lead" to "Won" using Google Sheets as your database. See your total pipeline value and next actions at a glance.</p>
-            </div>
-        </div>
+      <div class="nav-actions">
+        <a href="privacy.html" class="btn btn-secondary">Privacy</a>
+        <a href="#" class="btn btn-primary">Add to Chrome</a>
+      </div>
+    </div>
+  </header>
 
-        <div class="feature-grid">
-            <div>
-                <h2>Powerful Mail Merge</h2>
-                <p>Send personalized bulk emails directly from the extension. Use placeholders like name or company to customize every message.</p>
-            </div>
-            <img src="Screenshot-Merge.png" alt="Mail Merge Interface" class="screenshot">
-        </div>
-    </section>
-
-    <section style="text-align: center; margin-top: 80px;">
-        <h2>Privacy First by Design</h2>
-        <p>Unlike other CRMs, we don't store your data on our servers. Your contacts, deals, and emails stay within your Google Workspace. We use the <strong>"Least Privilege"</strong> security model, meaning your data remains yours.</p>
-    </section>
-
-    <footer>
-        <p>&copy; 2026 Simple CRM & Mail Merge for Gmail</p>
-        <p>
-            <a href="privacy.html">Privacy Policy</a> | 
-            <a href="mailto:hello@simple-crm.uk">Support & Contact</a>
+  <section class="hero">
+    <div class="container hero-grid">
+      <div>
+        <div class="eyebrow">Built for Gmail-based outreach and simple CRM workflows</div>
+        <h1>A simpler CRM and mail merge that lives inside Gmail</h1>
+        <p class="lead">
+          Save contacts from Gmail and LinkedIn, track opportunities in a lightweight pipeline,
+          and send personalised campaigns using Google Sheets — without moving your data into a bulky external CRM.
         </p>
-    </footer>
+
+        <div class="hero-actions">
+          <a href="#" class="btn btn-primary">Add to Chrome — It’s Free</a>
+          <a href="#workflow" class="btn btn-secondary">See how it works</a>
+        </div>
+
+        <ul class="hero-points">
+          <li>Privacy-first design</li>
+          <li>Google Sheets-powered campaigns</li>
+          <li>Works inside your Gmail workflow</li>
+        </ul>
+      </div>
+
+      <div class="hero-card">
+        <img src="Screenshot-Contacts.png" alt="Simple CRM running inside Gmail">
+      </div>
+    </div>
+  </section>
+
+  <section class="proof-bar">
+    <div class="container proof-grid">
+      <div class="proof-item">
+        <strong>Gmail-native</strong>
+        <span>Built to work where outreach already happens</span>
+      </div>
+      <div class="proof-item">
+        <strong>Google Sheets based</strong>
+        <span>Your campaign data stays in sheets you control</span>
+      </div>
+      <div class="proof-item">
+        <strong>Local CRM storage</strong>
+        <span>Contacts and pipeline stay in your browser</span>
+      </div>
+      <div class="proof-item">
+        <strong>Minimal permissions</strong>
+        <span>No broad inbox-reading model</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="features" class="section">
+    <div class="container">
+      <div class="section-head">
+        <h2>Built for people who want speed, not CRM overhead</h2>
+        <p>
+          Simple CRM focuses on the few things most solo operators, recruiters, consultants, and founders actually need:
+          capture contacts, manage opportunities, and send personalised outreach.
+        </p>
+      </div>
+
+      <div class="feature-grid">
+        <div class="feature-copy">
+          <h3>Capture contacts in context</h3>
+          <p>
+            Save contacts from Gmail and LinkedIn without breaking your flow. Keep the important details attached to real conversations, not buried in another tab.
+          </p>
+          <ul class="feature-list">
+            <li>Save contacts from Gmail threads</li>
+            <li>Capture LinkedIn name, role, and company</li>
+            <li>Keep CRM data lightweight and searchable</li>
+          </ul>
+        </div>
+        <div class="shot">
+          <img src="Screenshot-Contacts.png" alt="Contacts view inside Simple CRM">
+        </div>
+      </div>
+
+      <div class="feature-grid">
+        <div class="shot">
+          <img src="Screenshot-Pipeline.png" alt="Pipeline view inside Simple CRM">
+        </div>
+        <div class="feature-copy">
+          <h3>A pipeline that stays out of your way</h3>
+          <p>
+            Track open, won, and lost opportunities in a simple pipeline view. See total value, overdue actions, and next steps without the complexity of a heavyweight sales platform.
+          </p>
+          <ul class="feature-list">
+            <li>Simple opportunity stages</li>
+            <li>Quick view of value and overdue work</li>
+            <li>Designed for lightweight personal CRM use</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="feature-grid">
+        <div class="feature-copy">
+          <h3>Mail merge without the usual setup pain</h3>
+          <p>
+            Create a campaign sheet, write your template once, and send test or live campaigns using placeholders like <code>{{first_name}}</code> and <code>{{company}}</code>.
+          </p>
+          <ul class="feature-list">
+            <li>Template stored in your campaign sheet</li>
+            <li>Test send before live send</li>
+            <li>Status written back to the sheet</li>
+          </ul>
+        </div>
+        <div class="shot">
+          <img src="Screenshot-Merge.png" alt="Mail merge interface in Simple CRM">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="workflow" class="section section-alt">
+    <div class="container">
+      <div class="section-head">
+        <h2>From first contact to first campaign in minutes</h2>
+        <p>
+          The workflow is intentionally simple so you can get value quickly without importing your whole world into a new system.
+        </p>
+      </div>
+
+      <div class="steps">
+        <div class="step">
+          <div class="step-number">1</div>
+          <h3>Add a contact</h3>
+          <p>Save someone from Gmail or LinkedIn, or create a contact manually inside the side panel.</p>
+        </div>
+        <div class="step">
+          <div class="step-number">2</div>
+          <h3>Create a campaign sheet</h3>
+          <p>Generate a new Google Sheet with the Contacts and Config tabs already set up for mail merge.</p>
+        </div>
+        <div class="step">
+          <div class="step-number">3</div>
+          <h3>Send a test, then go live</h3>
+          <p>Preview the message with real placeholder data via a test send, then run the live campaign when ready.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="privacy" class="section">
+    <div class="container">
+      <div class="privacy-box">
+        <div class="section-head" style="margin-bottom: 18px;">
+          <h2 style="color: white; margin-bottom: 10px;">Privacy-first by design</h2>
+          <p>
+            Your CRM metadata stays local in Chrome storage. Campaign data stays in your Google Sheets. The extension uses a minimal-permissions model and does not rely on a broad inbox-reading setup.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container">
+      <div class="cta-panel">
+        <h2>Try a simpler Gmail CRM workflow</h2>
+        <p>
+          If you want a lightweight way to manage contacts, track pipeline, and run personalised outreach from your existing Gmail workflow, Simple CRM is built for exactly that.
+        </p>
+        <div class="cta-row">
+          <a href="#" class="btn btn-primary">Add to Chrome</a>
+          <a href="privacy.html" class="btn btn-secondary" style="color:#0f172a; border-color:#d7e2ff; background:#fff;">Read privacy policy</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container footer-grid">
+      <div>© 2026 Simple CRM & Mail Merge for Gmail</div>
+      <div class="footer-links">
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="mailto:hello@simple-crm.uk">Support</a>
+      </div>
+    </div>
+  </footer>
 
 </body>
 </html>
