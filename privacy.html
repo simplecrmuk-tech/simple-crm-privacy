@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Privacy Policy – Simple CRM Mail Merge for Gmail</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.min.css">
+  <style>
+    body {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 40px 20px;
+      line-height: 1.6;
+    }
+    .back-link {
+      text-decoration: none;
+    }
+    .contact-block {
+      margin-top: 1rem;
+    }
+  </style>
+</head>
+<body>
+
+  <p><a href="index.html" class="back-link">← Back to home</a></p>
+
+  <h1>Privacy Policy – Simple CRM Mail Merge for Gmail</h1>
+
+  <p><strong>Last updated:</strong> March 17, 2026</p>
+
+  <p>
+    Simple CRM Mail Merge for Gmail (“the extension”) is a Gmail-native CRM tool designed to help users manage contacts, track opportunities, and run mail merge campaigns using Google Sheets and the Google Apps Script Mail service.
+  </p>
+
+  <p>
+    We take privacy seriously and collect only the minimum data required for the extension to function.
+  </p>
+
+  <hr>
+
+  <h3>1. Data We Access (Google OAuth)</h3>
+  <p>
+    The extension uses Google OAuth to access specific data to provide its core services. We adhere to the principle of <strong>"Least Privilege,"</strong> accessing only what is necessary:
+  </p>
+
+  <ul>
+    <li><strong>Google Sheets (<code>.../auth/spreadsheets</code>):</strong> Used to read and write CRM data and campaign results within spreadsheets you designate.</li>
+    <li><strong>Google Drive (<code>.../auth/drive.file</code>):</strong> Used strictly to create and edit specific spreadsheet files created by the extension.</li>
+    <li><strong>User Identity (<code>.../auth/userinfo.email</code>):</strong> Used to identify your account for subscription management and trial tracking.</li>
+    <li><strong>Google Apps Script Mail Service (<code>.../auth/script.send_mail</code>):</strong> Used solely to execute mail merge campaigns that you manually trigger. This allows the extension to send emails via Apps Script without needing access to your full Gmail inbox.</li>
+  </ul>
+
+  <h3>2. Gmail (In-Page Context)</h3>
+  <p>
+    The extension runs inside your Gmail browser tab to help associate open email threads with CRM records.
+  </p>
+  <ul>
+    <li>The extension may read limited Gmail page context, such as the <strong>sender email address</strong> and <strong>email subject</strong>, solely for CRM matching purposes.</li>
+    <li>We do <strong>not</strong> read the body content of your emails for CRM matching.</li>
+    <li>This data is processed locally in your browser and is never transmitted to any external server.</li>
+  </ul>
+
+  <h3>3. Google API Limited Use Disclosure</h3>
+  <p>
+    Simple CRM Mail Merge's use and transfer to any other app of information received from Google APIs will adhere to the
+    <strong><a href="https://developers.google.com/terms/api-services-user-data-policy">Google API Services User Data Policy</a></strong>,
+    including the Limited Use requirements.
+  </p>
+
+  <p><strong>We do NOT:</strong></p>
+  <ul>
+    <li>Use Google user data for advertising.</li>
+    <li>Sell or share user data with third-party data brokers.</li>
+    <li>Use data for any purpose outside the core CRM and mail merge functionality.</li>
+  </ul>
+
+  <h3>4. Data Storage</h3>
+  <ul>
+    <li><strong>Locally (on your device):</strong> The extension stores CRM metadata (Opportunity records, pipeline stages) using <code>chrome.storage.local</code>. This data remains on your device and is never sent to our servers.</li>
+    <li><strong>On Google Sheets:</strong> Your Mail Merge campaign data (recipient lists and send status) is stored within the specific Google Sheets files that you control.</li>
+  </ul>
+
+  <h3>5. Mail Merge Sending Mechanism</h3>
+  <p>
+    Mail merge campaigns are handled via a "Private Bridge" using Google Apps Script.
+  </p>
+  <ul>
+    <li>Sending is only initiated when you explicitly click "Send" or "Test Send."</li>
+    <li>Because we use the <code>script.send_mail</code> scope, the extension <strong>cannot</strong> read your existing emails, search your inbox, or delete messages.</li>
+    <li>Your email content remains private and is never accessed or stored by the developers.</li>
+  </ul>
+
+  <h3>6. Data Sharing &amp; Third Parties</h3>
+  <p>
+    We do <strong>not</strong> operate a backend server and do <strong>not</strong> use third-party analytics or advertising trackers. Data is only exchanged with Google Services via encrypted HTTPS connections when you explicitly trigger a feature.
+  </p>
+
+  <h3>7. Export and Deletion</h3>
+  <ul>
+    <li><strong>Export:</strong> You can export your CRM data at any time via your associated Google Sheets.</li>
+    <li><strong>Deletion:</strong> Uninstalling the extension removes all locally stored metadata. Any Google Sheets created must be manually deleted from your Google Drive.</li>
+  </ul>
+
+  <h3>8. Security</h3>
+  <p>
+    The extension uses Google-approved OAuth2 protocols and Chrome’s secure storage APIs. All communication with Google services is encrypted using industry-standard HTTPS.
+  </p>
+
+  <h3>9. Contact</h3>
+  <div class="contact-block">
+    <p><strong>Simple CRM Mail Merge for Gmail</strong></p>
+    <p>📧 Email: <a href="mailto:hello@simple-crm.uk">hello@simple-crm.uk</a></p>
+    <p>🌐 Website: <a href="https://simple-crm.uk">https://simple-crm.uk</a></p>
+  </div>
+
+</body>
+</html>
