@@ -89,6 +89,11 @@
 
     .nav-links a {
       text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: var(--primary-dark);
     }
 
     .nav-actions {
@@ -102,13 +107,14 @@
       align-items: center;
       justify-content: center;
       min-height: 46px;
-      padding: 0 18px;
+      padding: 0 24px;
       border-radius: 12px;
       font-weight: 700;
       text-decoration: none;
       border: 1px solid transparent;
       transition: 0.2s ease;
       cursor: pointer;
+      white-space: nowrap;
     }
 
     .btn:hover {
@@ -428,6 +434,11 @@
 
     .footer-links a {
       text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover {
+      color: var(--primary-dark);
     }
 
     code {
@@ -437,26 +448,50 @@
       font-size: 0.95em;
     }
 
+    /* RESPONSIVE OVERRIDES */
     @media (max-width: 960px) {
       .hero-grid,
       .proof-grid,
       .feature-grid,
       .steps {
         grid-template-columns: 1fr;
+        gap: 30px;
       }
 
       .nav-links {
         display: none;
       }
+
+      .hero {
+        text-align: center;
+        padding: 40px 0;
+      }
+
+      .hero-actions, .hero-points {
+        justify-content: center;
+      }
+
+      .lead {
+        margin: 0 auto;
+      }
+
+      /* Stack reversed feature grids correctly (image on top) */
+      .feature-grid-reverse {
+        display: flex;
+        flex-direction: column-reverse;
+      }
     }
 
     @media (max-width: 640px) {
       .nav {
-        min-height: 64px;
+        flex-direction: column;
+        padding: 16px 0;
+        gap: 12px;
       }
 
       .nav-actions {
         width: 100%;
+        justify-content: center;
       }
 
       .nav-actions .btn {
@@ -467,8 +502,21 @@
         padding: 62px 0;
       }
 
-      .hero {
-        padding-top: 58px;
+      h1 {
+        font-size: 2.2rem;
+      }
+
+      .cta-row {
+        flex-direction: column;
+      }
+
+      .cta-row .btn {
+        width: 100%;
+      }
+
+      .footer-grid {
+        flex-direction: column;
+        text-align: center;
       }
     }
   </style>
@@ -489,7 +537,6 @@
       </nav>
 
       <div class="nav-actions">
-        <a href="privacy.html" class="btn btn-secondary">Privacy</a>
         <a href="#" class="btn btn-primary">Start free trial</a>
       </div>
     </div>
@@ -512,9 +559,9 @@
         <p class="hero-note">No card required · £2.99/month after trial</p>
 
         <ul class="hero-points">
-          <li>Privacy-first design</li>
-          <li>Google Sheets-powered campaigns</li>
-          <li>Works inside your Gmail workflow</li>
+          <li>No external software</li>
+          <li>Send mail merges from the sidebar</li>
+          <li>Manage your pipline from your inbox</li>
         </ul>
       </div>
 
@@ -572,7 +619,7 @@
         </div>
       </div>
 
-      <div class="feature-grid">
+      <div class="feature-grid feature-grid-reverse">
         <div class="shot">
           <img src="Screenshot-Pipeline.png" alt="Pipeline view inside Simple CRM">
         </div>
@@ -640,7 +687,7 @@
   <section id="privacy" class="section">
     <div class="container">
       <div class="privacy-box">
-        <div class="section-head" style="margin-bottom: 14px;">
+        <div class="section-head" style="margin-bottom: 0;">
           <h2 style="margin-bottom: 10px;">Privacy-first by design</h2>
           <p>
             Your CRM metadata stays local in Chrome storage. Campaign data stays in your Google Sheets. The extension uses a minimal-permissions model and does not rely on a broad inbox-reading setup.
