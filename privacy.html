@@ -20,6 +20,11 @@
       border-top: 1px solid #ccc;
       padding-top: 1rem;
     }
+    code {
+      background: #f0f0f0;
+      padding: 2px 4px;
+      border-radius: 4px;
+    }
   </style>
 </head>
 <body>
@@ -97,25 +102,35 @@
     We do <strong>not</strong> operate a backend server and do <strong>not</strong> use third-party analytics or advertising trackers. Data is only exchanged with Google Services via encrypted HTTPS connections when you explicitly trigger a feature.
   </p>
 
-  <h3>7. Export and Deletion</h3>
+  <h3>7. Payment Processing</h3>
+  <p>
+    We use <strong>ExtensionPay</strong> and <strong>Stripe</strong> to manage subscriptions and process payments.
+  </p>
+  <ul>
+    <li><strong>Personal Data:</strong> When you subscribe, ExtensionPay stores your email address and payment status to manage your access to Pro features.</li>
+    <li><strong>Financial Data:</strong> We do not host a backend and never see or store your credit card details. All payment transactions are handled securely by Stripe, a PCI-compliant payment processor.</li>
+    <li>For more details, see the <a href="https://extensionpay.com/privacy">ExtensionPay Privacy Policy</a> and the <a href="https://stripe.com/privacy">Stripe Privacy Policy</a>.</li>
+  </ul>
+
+  <h3>8. Export and Deletion</h3>
   <ul>
     <li><strong>Export:</strong> You can export your CRM data at any time via your associated Google Sheets.</li>
     <li><strong>Deletion:</strong> Uninstalling the extension removes all locally stored metadata. Any Google Sheets created must be manually deleted from your Google Drive.</li>
   </ul>
 
-  <h3>8. Security</h3>
+  <h3>9. Security</h3>
   <p>
     The extension uses Google-approved OAuth2 protocols and Chrome’s secure storage APIs. All communication with Google services is encrypted using industry-standard HTTPS.
   </p>
 
-  <h3>9. Contact & Trader Information</h3>
+  <h3>10. Contact & Trader Information</h3>
   <div class="contact-block">
     <p><strong>Simple CRM</strong></p>
     <p>📧 Email: <a href="mailto:hello@simple-crm.uk">hello@simple-crm.uk</a></p>
     <p>🌐 Website: <a href="https://simple-crm.uk">https://simple-crm.uk</a></p>
     <p>📍 <strong>Business Address:</strong><br>
-       Unit 166427, 13 Freeland Park, Wareham Road,<br>
-       Poole, Dorset, BH16 6FH, United Kingdom</p>
+        Unit 166427, 13 Freeland Park, Wareham Road,<br>
+        Poole, Dorset, BH16 6FH, United Kingdom</p>
   </div>
 
 </body>
