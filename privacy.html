@@ -33,7 +33,7 @@
 
   <h1>Privacy Policy – Simple CRM</h1>
 
-  <p><strong>Last updated:</strong> April 21, 2026</p>
+  <p><strong>Last updated:</strong> April 29, 2026</p>
 
   <p>
     Simple CRM (“the extension”) is a Gmail-native CRM tool designed to help users manage contacts, track opportunities, and run mail merge campaigns using Google Sheets and the Google Apps Script Mail service.
@@ -41,6 +41,10 @@
 
   <p>
     We take privacy seriously and collect only the minimum data required for the extension to function.
+  </p>
+
+  <p>
+    Email processing and CRM functionality are designed to run locally in your browser wherever possible. We do not operate a backend server for storing user email data.
   </p>
 
   <hr>
@@ -59,13 +63,27 @@
 
   <h3>2. Gmail (In-Page Context)</h3>
   <p>
-    The extension runs inside your Gmail browser tab to help associate open email threads with CRM records.
+    The extension runs inside your Gmail browser tab to help associate open email threads with CRM records and provide productivity features.
   </p>
   <ul>
-    <li>The extension may read limited Gmail page context, such as the <strong>sender email address</strong> and <strong>email subject</strong>, solely for CRM matching purposes.</li>
-    <li>We do <strong>not</strong> read the body content of your emails for CRM matching.</li>
-    <li>This data is processed locally in your browser and is never transmitted to any external server.</li>
+    <li>The extension may read limited Gmail page context, including the <strong>sender email address</strong>, <strong>email subject</strong>, and <strong>visible email content</strong>, solely to support CRM functionality.</li>
+    <li>This includes generating summaries of email conversations and suggesting follow-up actions such as reminders or tasks.</li>
+    <li><strong>Email content is processed locally within your browser to generate summaries and suggestions. This data is not transmitted to any external servers.</strong></li>
+    <li>Email content is only used when you interact with the extension, such as viewing an email or clicking “Log email”, and is not accessed in the background for unrelated purposes.</li>
   </ul>
+
+  <h4>Email Content Processing</h4>
+  <p>
+    When using Gmail integration features, the extension may process the content of emails currently visible in your Gmail interface to:
+  </p>
+  <ul>
+    <li>Generate concise summaries of email conversations.</li>
+    <li>Suggest follow-up actions such as meetings, replies, or reminders.</li>
+    <li>Allow you to save relevant notes to your CRM records.</li>
+  </ul>
+  <p>
+    All email content processing is performed locally within your browser. Email content is not transmitted, stored externally, sold, or shared with any third parties.
+  </p>
 
   <h3>3. Google API Limited Use Disclosure</h3>
   <p>
@@ -83,8 +101,9 @@
 
   <h3>4. Data Storage</h3>
   <ul>
-    <li><strong>Locally (on your device):</strong> The extension stores CRM metadata (Opportunity records, pipeline stages) using <code>chrome.storage.local</code>. This data remains on your device and is never sent to our servers.</li>
-    <li><strong>On Google Sheets:</strong> Your Mail Merge campaign data (recipient lists and send status) is stored within the specific Google Sheets files that you control.</li>
+    <li><strong>Locally (on your device):</strong> The extension stores CRM data and metadata, including contacts, opportunity records, pipeline stages, notes, and follow-up information, using <code>chrome.storage.local</code>. This data remains on your device and is never sent to our servers.</li>
+    <li><strong>Email Summaries &amp; Notes:</strong> Any summaries or notes generated from email content are stored locally in your browser as part of your CRM data and are never transmitted to external servers.</li>
+    <li><strong>On Google Sheets:</strong> Your mail merge campaign data, such as recipient lists and send status, is stored within the specific Google Sheets files that you control.</li>
   </ul>
 
   <h3>5. Mail Merge Sending Mechanism</h3>
@@ -93,13 +112,14 @@
   </p>
   <ul>
     <li>Sending is only initiated when you explicitly click "Send" or "Test Send."</li>
-    <li>Because we use the <code>script.send_mail</code> scope, the extension <strong>cannot</strong> read your existing emails, search your inbox, or delete messages.</li>
-    <li>Your email content remains private and is never accessed or stored by the developers.</li>
+    <li>Because we use the <code>script.send_mail</code> scope, the extension does <strong>not</strong> require access to your full Gmail inbox through the Gmail API.</li>
+    <li>The extension cannot search your inbox, delete messages, or modify your Gmail messages through the Gmail API.</li>
+    <li>Mail merge content is only sent when you manually trigger a mail merge action.</li>
   </ul>
 
   <h3>6. Data Sharing &amp; Third Parties</h3>
   <p>
-    We do <strong>not</strong> operate a backend server and do <strong>not</strong> use third-party analytics or advertising trackers. Data is only exchanged with Google Services via encrypted HTTPS connections when you explicitly trigger a feature.
+    We do <strong>not</strong> operate a backend server for storing your CRM or email data and do <strong>not</strong> use third-party analytics or advertising trackers. Data is only exchanged with Google services via encrypted HTTPS connections when you explicitly trigger a feature that requires it, such as creating a Google Sheet or sending a mail merge campaign.
   </p>
 
   <h3>7. Payment Processing</h3>
@@ -115,7 +135,7 @@
   <h3>8. Export and Deletion</h3>
   <ul>
     <li><strong>Export:</strong> You can export your CRM data at any time via your associated Google Sheets.</li>
-    <li><strong>Deletion:</strong> Uninstalling the extension removes all locally stored metadata. Any Google Sheets created must be manually deleted from your Google Drive.</li>
+    <li><strong>Deletion:</strong> Uninstalling the extension removes locally stored metadata from the browser. Any Google Sheets created by or used with the extension must be manually deleted from your Google Drive if you no longer want them.</li>
   </ul>
 
   <h3>9. Security</h3>
@@ -123,7 +143,7 @@
     The extension uses Google-approved OAuth2 protocols and Chrome’s secure storage APIs. All communication with Google services is encrypted using industry-standard HTTPS.
   </p>
 
-  <h3>10. Contact & Trader Information</h3>
+  <h3>10. Contact &amp; Trader Information</h3>
   <div class="contact-block">
     <p><strong>Simple CRM</strong></p>
     <p>📧 Email: <a href="mailto:hello@simple-crm.uk">hello@simple-crm.uk</a></p>
