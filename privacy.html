@@ -33,7 +33,7 @@
 
   <h1>Privacy Policy – Simple CRM</h1>
 
-  <p><strong>Last updated:</strong> June 24, 2026</p>
+  <p><strong>Last updated:</strong> July 17, 2026</p>
 
   <p>
     Simple CRM (“the extension”) is a Gmail-native CRM tool designed to help users manage contacts, track opportunities, and run mail merge campaigns using Google Sheets and the Google Apps Script Mail service.
@@ -48,12 +48,11 @@
 
   <h3>1. Data We Access (Google OAuth)</h3>
   <p>
-    The extension uses Google OAuth to access specific data. We do not request Gmail API scopes (such as <code>gmail.readonly</code>); instead, we adhere to the principle of <strong>“Least Privilege”</strong>:
+    The extension uses Google OAuth to access specific data. We do not request Gmail API scopes (such as <code>gmail.readonly</code>); instead, we adhere to the strict principle of <strong>“Least Privilege”</strong>:
   </p>
 
   <ul>
-    <li><strong>Google Sheets (<code>.../auth/spreadsheets</code>):</strong> Used to read and write data in Google Sheets you create or connect—such as mail merge campaign sheets (recipients, templates, send configuration) and optional team report sheets (aggregate pipeline metrics).</li>
-    <li><strong>Google Drive (<code>.../auth/drive.file</code>):</strong> Used to create and edit specific files opened or created by the extension (for example, campaign sheets and team report spreadsheets).</li>
+    <li><strong>Google Drive (<code>.../auth/drive.file</code>):</strong> Used to create, read, and edit only the specific Google Sheets spreadsheet files programmatically generated or opened by the extension (such as your dedicated CRM pipeline sheet, mail merge campaign sheets, and optional team report spreadsheets). Because we use this narrow, non-sensitive scope, we do not have access to your broader Google Drive files, folders, or pre-existing spreadsheets.</li>
     <li><strong>User Identity (<code>.../auth/userinfo.email</code>):</strong> Used to identify your Google account for subscription management via ExtensionPay, and to prefill your email (and optionally name) during onboarding.</li>
     <li><strong>Google Apps Script Mail Service (<code>.../auth/script.send_mail</code>):</strong> Used solely to execute mail merge campaigns that you manually trigger. This allows the extension to send emails via Apps Script without requiring access to your full Gmail inbox history or the Gmail API.</li>
   </ul>
@@ -80,7 +79,7 @@
   <h3>4. Data Storage</h3>
   <ul>
     <li><strong>Local Device Storage:</strong> Your primary CRM data—contacts, opportunities, pipeline stages, settings, onboarding progress, and duplicate-protection hashes—is stored in <code>chrome.storage.local</code> on your device. Brief Gmail context (such as sender email and subject) may be held in <code>chrome.storage.session</code> while you use Gmail.</li>
-    <li><strong>Google Sheets:</strong> Mail merge campaign sheets and optional team report sheets are stored in Google Sheets files you create or connect. Contacts and opportunities are not automatically copied to Sheets unless you export them or add recipients to a campaign sheet.</li>
+    <li><strong>Google Sheets:</strong> Mail merge campaign sheets and optional team report sheets are stored in Google Sheets files created and managed strictly under the <code>drive.file</code> scope. Contacts and opportunities are not automatically copied to Sheets unless you export them or add recipients to a campaign sheet.</li>
   </ul>
 
   <h3>5. Mail Merge Mechanism</h3>
@@ -105,7 +104,7 @@
 
   <h3>8. Export and Deletion</h3>
   <ul>
-    <li><strong>Export:</strong> You can export your local CRM data as a JSON file via the extension Settings at any time. Data in Google Sheets you created or connected remains accessible in your Google account.</li>
+    <li><strong>Export:</strong> You can export your local CRM data as a JSON file via the extension Settings at any time. Data in Google Sheets you created remains accessible in your Google account.</li>
     <li><strong>Deletion:</strong> Uninstalling the extension removes locally stored CRM data from the browser. Google Sheets and Drive files remain in your account until you manually delete them.</li>
   </ul>
 
