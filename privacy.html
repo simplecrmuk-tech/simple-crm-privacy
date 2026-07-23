@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Privacy Policy – Simple CRM</title>
+  <title>Privacy Policy – Simple CRM &amp; Mail Merge for Gmail</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.min.css">
   <style>
     body {
@@ -25,95 +25,174 @@
       padding: 2px 4px;
       border-radius: 4px;
     }
+    table {
+      font-size: 0.95rem;
+    }
   </style>
 </head>
 <body>
 
   <p><a href="index.html" class="back-link">← Back to home</a></p>
 
-  <h1>Privacy Policy – Simple CRM</h1>
+  <h1>Privacy Policy – Simple CRM &amp; Mail Merge for Gmail</h1>
 
-  <p><strong>Last updated:</strong> July 17, 2026</p>
+  <p><strong>Last updated:</strong> July 23, 2026</p>
 
   <p>
-    Simple CRM (“the extension”) is a Gmail-native CRM tool designed to help users manage contacts, track opportunities, and run mail merge campaigns using Google Sheets and the Google Apps Script Mail service.
+    Simple CRM &amp; Mail Merge for Gmail (“the extension”) is a Gmail-native CRM tool designed to help users manage contacts, track sales opportunities, run mail merge campaigns, and optionally sync aggregate team metrics to a shared Google Sheet.
   </p>
 
   <p>
     We take privacy seriously and collect only the minimum data required for the extension to function.
-    <strong>We do not operate a proprietary backend server for storing or processing user email data.</strong>
+    <strong>We do not operate a proprietary backend server for storing or processing your CRM or spreadsheet content.</strong>
   </p>
 
   <hr>
 
-  <h3>1. Data We Access (Google OAuth)</h3>
-  <p>
-    The extension uses Google OAuth to access specific data. We do not request Gmail API scopes (such as <code>gmail.readonly</code>); instead, we adhere to the strict principle of <strong>“Least Privilege”</strong>:
-  </p>
-
+  <h2>Summary</h2>
   <ul>
-    <li><strong>Google Drive (<code>.../auth/drive.file</code>):</strong> Used to create, read, and edit only the specific Google Sheets spreadsheet files programmatically generated or opened by the extension (such as your dedicated CRM pipeline sheet, mail merge campaign sheets, and optional team report spreadsheets). Because we use this narrow, non-sensitive scope, we do not have access to your broader Google Drive files, folders, or pre-existing spreadsheets.</li>
-    <li><strong>User Identity (<code>.../auth/userinfo.email</code>):</strong> Used to identify your Google account for subscription management via ExtensionPay, and to prefill your email (and optionally name) during onboarding.</li>
-    <li><strong>Google Apps Script Mail Service (<code>.../auth/script.send_mail</code>):</strong> Used solely to execute mail merge campaigns that you manually trigger. This allows the extension to send emails via Apps Script without requiring access to your full Gmail inbox history or the Gmail API.</li>
+    <li><strong>CRM data</strong> (contacts, deals, settings) is stored <strong>locally on your device</strong> unless you export it or use optional Google Sheets features.</li>
+    <li><strong>Gmail content</strong> is read from the <strong>visible Gmail page</strong> in your browser (not the Gmail API) to match senders and optionally build on-device email log summaries.</li>
+    <li><strong>Google Sheets / Apps Script</strong> are used only when <strong>you connect Google</strong> and use mail merge, campaign sheets, or team reporting.</li>
+    <li><strong>We do not sell</strong> your data. CRM and sheet content are <strong>not transmitted to developer-operated servers</strong>.</li>
   </ul>
 
-  <h3>2. Gmail Integration &amp; “Email Summary”</h3>
+  <h2>1. Data We Access (Google OAuth)</h2>
+  <p>
+    When you click <strong>Connect Google</strong> or use a feature that requires sign-in, the extension uses Google OAuth. We do <strong>not</strong> request Gmail API scopes (such as <code>gmail.readonly</code>).
+  </p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Scope</th>
+        <th>Purpose</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Google Sheets</strong><br><code>.../auth/spreadsheets</code></td>
+        <td>
+          Create and update mail merge campaign spreadsheets (Contacts and Config tabs); read and write template and recipient data; update send status after you trigger a send.
+          <strong>Team reporting:</strong> connect to a shared team report sheet (including sheets created and shared by a manager), create report structure, and write one summary row per rep (pipeline counts, values, win rate, rep name/email, sync time).
+          Contact lists, deal notes, and email bodies are <strong>not</strong> synced to the team report sheet.
+        </td>
+      </tr>
+      <tr>
+        <td><strong>Google Drive (per-file)</strong><br><code>.../auth/drive.file</code></td>
+        <td>
+          Access spreadsheet files created or opened through the extension. This complements the Sheets scope for app-created campaign and report files. It does <strong>not</strong> grant access to your entire Google Drive.
+        </td>
+      </tr>
+      <tr>
+        <td><strong>User identity</strong><br><code>.../auth/userinfo.email</code></td>
+        <td>
+          Identify your signed-in Google account; prefill team reporting settings; support subscription status via ExtensionPay.
+        </td>
+      </tr>
+      <tr>
+        <td><strong>Apps Script mail</strong><br><code>.../auth/script.send_mail</code></td>
+        <td>
+          Send mail-merge <strong>Test</strong> and <strong>Send LIVE</strong> emails from <strong>your own Gmail account</strong> when you explicitly click those buttons. The extension cannot search, delete, or modify your existing Gmail messages.
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p>
+    All Google API calls are made <strong>directly from the extension to Google</strong> under <strong>your</strong> Google account. We do not proxy your Google data through our servers.
+  </p>
+
+  <h2>2. Gmail Integration &amp; “Log Email”</h2>
   <p>
     The extension provides features inside your Gmail browser tab to help associate active email threads with CRM records.
   </p>
   <ul>
-    <li><strong>Tab-Only Context:</strong> We do not use Google’s Gmail API to read your inbox. Gmail-related features read only what is rendered in the active, open browser tab when you interact with the extension.</li>
-    <li><strong>User-Initiated Only:</strong> Email summaries are created when you take an action (for example, “Log email”). We do not scan your inbox in the background.</li>
-    <li><strong>Local Processing:</strong> The “Email Summary” feature uses rule-based logic to strip signatures and disclaimers to create concise notes. <strong>This processing is performed locally within your browser; email content is never transmitted to our servers or third-party AI APIs.</strong></li>
-    <li><strong>Intent Detection:</strong> The extension may scan the active thread for keywords (e.g., “meeting”) or time-based phrases (e.g., “next week”) to suggest follow-up actions. This analysis happens entirely on your device.</li>
+    <li><strong>Tab-only context:</strong> We do not use Google’s Gmail API to read your inbox. Gmail-related features read only what is rendered in the active, open browser tab when you interact with the extension (sender email, subject, and visible message text).</li>
+    <li><strong>User-initiated only:</strong> Email summaries are created when you take an action (for example, “Log email”). We do not scan your inbox in the background.</li>
+    <li><strong>Local processing:</strong> The “Log email” feature uses rule-based logic to strip signatures and disclaimers to create concise notes. <strong>This processing is performed locally within your browser; email content is never transmitted to our servers or third-party AI APIs.</strong></li>
+    <li><strong>Intent detection:</strong> The extension may scan the active thread for keywords (e.g., “meeting”) or time-based phrases (e.g., “next week”) to suggest follow-up actions. This analysis happens entirely on your device.</li>
     <li><strong>Reminders:</strong> If you enable reminders, optional desktop notifications may show opportunity names and due dates. They do not include email body content.</li>
   </ul>
 
-  <h3>3. Google API Limited Use Disclosure</h3>
+  <h2>3. Team Reporting</h2>
+  <p>
+    Optional team reporting lets each person sync <strong>aggregate pipeline metrics</strong> to one shared Google Sheet — one row per rep.
+  </p>
+  <ul>
+    <li><strong>What is synced:</strong> Summary counts and values (e.g. open opportunities, pipeline value, win rate), plus rep name, email, team name, and last sync time.</li>
+    <li><strong>What is not synced:</strong> Contact lists, deal notes, email bodies, or per-deal detail rows.</li>
+    <li><strong>Shared sheets:</strong> Team members may connect to an existing sheet URL shared by a manager. Sheet access is managed through normal Google Sheets sharing settings.</li>
+    <li><strong>User control:</strong> Sync runs only when you connect a sheet and click <strong>Sync now</strong>, or when auto-sync is enabled and you save pipeline changes.</li>
+  </ul>
+
+  <h2>4. Google API Limited Use Disclosure</h2>
   <p>
     Simple CRM's use and transfer to any other app of information received from Google APIs will adhere to the
     <strong><a href="https://developers.google.com/terms/api-services-user-data-policy">Google API Services User Data Policy</a></strong>,
-    including the Limited Use requirements. We do NOT use user data for advertising, data brokering, or training AI models.
+    including the Limited Use requirements. We do <strong>NOT</strong> use user data for advertising, data brokering, creditworthiness, or training AI models.
   </p>
 
-  <h3>4. Data Storage</h3>
+  <h2>5. Data Storage</h2>
   <ul>
-    <li><strong>Local Device Storage:</strong> Your primary CRM data—contacts, opportunities, pipeline stages, settings, onboarding progress, and duplicate-protection hashes—is stored in <code>chrome.storage.local</code> on your device. Brief Gmail context (such as sender email and subject) may be held in <code>chrome.storage.session</code> while you use Gmail.</li>
-    <li><strong>Google Sheets:</strong> Mail merge campaign sheets and optional team report sheets are stored in Google Sheets files created and managed strictly under the <code>drive.file</code> scope. Contacts and opportunities are not automatically copied to Sheets unless you export them or add recipients to a campaign sheet.</li>
+    <li><strong>Local device storage:</strong> Your primary CRM data — contacts, opportunities, pipeline stages, settings, onboarding progress, entitlement state, and duplicate-protection hashes — is stored in <code>chrome.storage.local</code> on your device. Brief Gmail context (such as sender email and subject) may be held in <code>chrome.storage.session</code> while you use Gmail.</li>
+    <li><strong>Google Sheets:</strong> Mail merge campaign sheets and optional team report sheets are stored in Google Sheets under your Google account. Contacts and opportunities are not automatically copied to Sheets unless you add recipients to a campaign sheet, export data, or sync team reporting metrics.</li>
   </ul>
 
-  <h3>5. Mail Merge Mechanism</h3>
+  <h2>6. Mail Merge</h2>
   <p>
-    Test and live mail merge sends are only initiated when you explicitly click the corresponding buttons. Because we use the <code>script.send_mail</code> scope, the extension cannot search, delete, or modify your existing Gmail messages.
+    Mail merge uses Google Sheets for campaign data and Google Apps Script to send email from your own Gmail account. Test and live sends are only initiated when you explicitly click the corresponding buttons (with confirmation for live sends). The extension does <strong>not</strong> perform automated background sending.
   </p>
 
-  <h3>6. Data Sharing &amp; Third Parties</h3>
+  <h2>7. Data Sharing &amp; Third Parties</h2>
   <p>
-    Data is not sent to any proprietary servers. Information is only exchanged over encrypted HTTPS connections with <strong>Google APIs</strong> (for Sheets, Drive, Apps Script, and account identity when you use those features) and <strong>ExtensionPay/Stripe</strong> (for subscription management) when you trigger a feature that requires them.
+    CRM and spreadsheet content is not sent to developer-operated servers. Information is only exchanged over encrypted HTTPS connections with:
   </p>
+  <ul>
+    <li><strong>Google APIs</strong> — when you explicitly use Google Sheets, Drive, Apps Script, or account identity features</li>
+    <li><strong>ExtensionPay / Stripe</strong> — for optional Pro subscription management only</li>
+  </ul>
+  <p>We do not sell or rent personal data.</p>
 
-  <h3>7. Payment Processing</h3>
+  <h2>8. Payment Processing</h2>
   <p>
     We use <strong>ExtensionPay</strong> and <strong>Stripe</strong> to manage subscriptions.
   </p>
   <ul>
     <li>When you subscribe, ExtensionPay stores your email address and payment status.</li>
-    <li>We never see or store your financial details; all transactions are handled securely by Stripe.</li>
+    <li>We never see or store your payment card details; all transactions are handled securely by Stripe.</li>
     <li>See the <a href="https://extensionpay.com/privacy" target="_blank" rel="noopener noreferrer">ExtensionPay Privacy Policy</a> for details.</li>
   </ul>
 
-  <h3>8. Export and Deletion</h3>
+  <h2>9. Chrome Web Store Data Disclosures</h2>
+  <p>The extension handles the following categories of user data as disclosed in the Chrome Web Store:</p>
   <ul>
-    <li><strong>Export:</strong> You can export your local CRM data as a JSON file via the extension Settings at any time. Data in Google Sheets you created remains accessible in your Google account.</li>
-    <li><strong>Deletion:</strong> Uninstalling the extension removes locally stored CRM data from the browser. Google Sheets and Drive files remain in your account until you manually delete them.</li>
+    <li>Personally identifiable information (e.g. contact and account email fields you enter or sync)</li>
+    <li>Financial and payment information (via ExtensionPay for optional Pro subscription)</li>
+    <li>Personal communications (Gmail thread context you view; emails you send via mail merge)</li>
+    <li>Website content (Gmail page content read in-browser for CRM context)</li>
   </ul>
-
-  <h3>9. Security</h3>
   <p>
-    The extension uses Google-approved OAuth2 protocols and Chrome’s secure storage APIs. All communication is encrypted using industry-standard HTTPS.
+    Your data is <strong>not sold</strong>, <strong>not used for unrelated purposes</strong>, and <strong>not used for creditworthiness or lending</strong>.
   </p>
 
-  <h3>10. Contact Information</h3>
+  <h2>10. Export and Deletion</h2>
+  <ul>
+    <li><strong>Export:</strong> You can export your local CRM data as a JSON file via Settings at any time. Data in Google Sheets you created or connected to remains accessible in your Google account.</li>
+    <li><strong>Deletion:</strong> Uninstalling the extension removes locally stored CRM data from the browser. Google Sheets files remain in your account until you manually delete them.</li>
+  </ul>
+
+  <h2>11. Security</h2>
+  <p>
+    The extension uses Google-approved OAuth2 protocols and Chrome’s secure storage APIs. All communication with Google and payment providers is encrypted using industry-standard HTTPS.
+  </p>
+
+  <h2>12. Changes</h2>
+  <p>
+    If this privacy policy changes, the updated version will be published at this URL before new data practices take effect.
+  </p>
+
+  <h2>13. Contact Information</h2>
   <div class="contact-block">
     <p><strong>Simple CRM</strong></p>
     <p>📧 Email: <a href="mailto:hello@simple-crm.uk">hello@simple-crm.uk</a></p>
